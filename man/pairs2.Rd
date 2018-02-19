@@ -5,6 +5,7 @@
 \title{Scatterplot matrices}
 \source{
 href{https://stackoverflow.com/questions/22810309/pairs-specifying-axes-limits-of-the-subpanels}{Specifying axes limits of the subpanels}
+        and \href{https://stackoverflow.com/questions/9680783/how-can-i-change-the-axis-position-for-pairs}{How can I change the axis position for pairs()?}
         from \href{https://stackoverflow.com}{StackOverflow}.
 }
 \usage{
@@ -93,6 +94,7 @@ pairs(iris[1:4], xlim = my.xlim)
 }
 \author{
 Marc Choisy and
-        \href{https://stackoverflow.com/users/2591234/shadow}{shadow} user
+        \href{https://stackoverflow.com/users/2591234/shadow}{shadow} and
+        \href{https://stackoverflow.com/users/511399/edi}{edi} users
         from \href{https://stackoverflow.com}{StackOverflow}.
 }
