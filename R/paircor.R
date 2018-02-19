@@ -17,13 +17,14 @@
 #' @param pch a vector of plotting characters or symbols: see
 #'            \code{[graphics]{points}}.
 #'
-#' @param bty A character string which determined the type of
-#'            \code{[graphics]{box}} which is drawn about plots. If \code{bty}
-#'            is one of "\code{o}" (the default), "\code{l}", "\code{7}",
-#'            "\code{c}", "\code{u}", or "\code{]}" the resulting \code{box}
-#'            resembles the corresponding upper case letter. A value of
-#'            "\code{n}" suppresses the \code{box}. See \code{[graphics]{par}}
-#'            for more information.
+#' @param bty_upper,bty_lower A character string which determined the type of
+#'                            \code{[graphics]{box}} which is drawn about plots.
+#'                            If \code{bty} is one of "\code{o}" (the default),
+#'                            "\code{l}", "\code{7}", "\code{c}", "\code{u}", or
+#'                            "\code{]}" the resulting \code{box} resembles the
+#'                            corresponding upper case letter. A value of
+#'                            "\code{n}" suppresses the \code{box}. See
+#'                            \code{[graphics]{par}} for more information.
 #'
 #' @param col The colors for lines and points. Multiple colors can be specified
 #'            so that each point can be given its own color. If there are fewer
@@ -48,15 +49,16 @@
 #'
 #' @author Marc Choisy
 #'
-paircor <- function(df, digits = 2, cex = 1.5, pch = 21, bty = par("bty"),
-                    col = par("col"), bg = par("bg"), axeslim = NULL, ...) {
+paircor <- function(df, digits = 2, cex = 1.5, pch = 21, bty_upper = par("bty"),
+                    bty_lower = par("bty"), col = par("col"), bg = par("bg"),
+                    axeslim = NULL, ...) {
   if (is.null(axeslim)) axeslim <- range(df)
   .x <- .y <- mean(axeslim)
   n <- length(df)
   xlim <- ylim <- array(c(rep(axeslim[1], n*n), rep(axeslim[2], n*n)), c(n, n, 2))
   pairs2(df,
          upper.panel = function(x, y, ...) {
-           points(x, y, type = "n", bty = bty, ...)
+           points(x, y, type = "n", bty = "n", ...)
            cor.test(x, y) %>%
              `[`(c("estimate", "p.value")) %>%
              unlist() %>%
@@ -65,10 +67,12 @@ paircor <- function(df, digits = 2, cex = 1.5, pch = 21, bty = par("bty"),
              paste(c("r", "p"), ., sep = " = ") %>%
              paste(collapse = "\n") %>%
              text(.x, .y, ., cex = cex)
+           box(bty = bty_upper)
          },
          lower.panel = function(x, y, ...) {
-           points(x, y, cex = cex, pch = pch, col = col, bg = bg, bty = bty, ...)
+           points(x, y, cex = cex, pch = pch, col = col, bg = bg, bty = "n", ...)
            abline(0, 1)
+           box(bty = bty_lower)
          },
          xlim = xlim, ylim = ylim, ...)
 }

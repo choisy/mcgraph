@@ -4,8 +4,9 @@
 \alias{paircor}
 \title{A graphical correlation matrix}
 \usage{
-paircor(df, digits = 2, cex = 1.5, pch = 21, bty = par("bty"),
-  col = par("col"), bg = par("bg"), axeslim = NULL, ...)
+paircor(df, digits = 2, cex = 1.5, pch = 21, bty_upper = par("bty"),
+  bty_lower = par("bty"), col = par("col"), bg = par("bg"),
+  axeslim = NULL, ...)
 }
 \arguments{
 \item{df}{a data frame.}
@@ -22,13 +23,14 @@ not affect annotation: see \code{[graphics]{plot.default}}.}
 \item{pch}{a vector of plotting characters or symbols: see
 \code{[graphics]{points}}.}
 
-\item{bty}{A character string which determined the type of
-\code{[graphics]{box}} which is drawn about plots. If \code{bty}
-is one of "\code{o}" (the default), "\code{l}", "\code{7}",
-"\code{c}", "\code{u}", or "\code{]}" the resulting \code{box}
-resembles the corresponding upper case letter. A value of
-"\code{n}" suppresses the \code{box}. See \code{[graphics]{par}}
-for more information.}
+\item{bty_upper, bty_lower}{A character string which determined the type of
+\code{[graphics]{box}} which is drawn about plots.
+If \code{bty} is one of "\code{o}" (the default),
+"\code{l}", "\code{7}", "\code{c}", "\code{u}", or
+"\code{]}" the resulting \code{box} resembles the
+corresponding upper case letter. A value of
+"\code{n}" suppresses the \code{box}. See
+\code{[graphics]{par}} for more information.}
 
 \item{col}{The colors for lines and points. Multiple colors can be specified
 so that each point can be given its own color. If there are fewer
