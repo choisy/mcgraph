@@ -4,7 +4,7 @@
 \alias{pairs2}
 \title{Scatterplot matrices}
 \source{
-href{https://stackoverflow.com/questions/22810309/pairs-specifying-axes-limits-of-the-subpanels}{Specifying axes limits of the subpanels}
+\href{https://stackoverflow.com/questions/22810309/pairs-specifying-axes-limits-of-the-subpanels}{Specifying axes limits of the subpanels}
         and \href{https://stackoverflow.com/questions/9680783/how-can-i-change-the-axis-position-for-pairs}{How can I change the axis position for pairs()?}
         from \href{https://stackoverflow.com}{StackOverflow}.
 }
@@ -66,14 +66,14 @@ arguments to use for each subplot.}
 lower half matrix?}
 }
 \description{
-A matrix of scatterplots is produced
+A matrix of scatterplots is produced.
 }
 \details{
 This function is a slight modification of the original
-\code{\link[graphics]{pairs}} function as proposed here by
-\href{https://stackoverflow.com/users/2591234/shadow}{shadow} on
-\href{https://stackoverflow.com}{StackOverflow}:
-\url{https://stackoverflow.com/questions/22810309/pairs-specifying-axes-limits-of-the-subpanels}
+\code{\link[graphics]{pairs}} function as proposed by
+\href{https://stackoverflow.com/users/2591234/shadow}{shadow} and
+\href{https://stackoverflow.com/users/511399/edi}{edi} on
+\href{https://stackoverflow.com}{StackOverflow}.
 }
 \examples{
 data(iris)
