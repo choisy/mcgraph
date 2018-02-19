@@ -136,7 +136,7 @@ pairs2 <- function(x, labels, panel = points, ..., lower.panel = panel,
   oma <- if ("oma" %in% nmdots) dots$oma
   main <- if ("main" %in% nmdots) dots$main
   if (is.null(oma)) oma <- c(4, 4, if (!is.null(main)) 6 else 4, 4)
-  opar <- par(mfrow = c(nc, nc), mar = rep.int(gap/2, 4), oma = oma)
+  opar <- par(mfrow = c(nc, nc), mar = rep.int(gap / 2, 4), oma = oma)
   on.exit(par(opar))
   dev.hold()
   on.exit(dev.flush(), add = TRUE)
@@ -164,13 +164,13 @@ pairs2 <- function(x, labels, panel = points, ..., lower.panel = panel,
 
       if (i == j || (i < j && has.lower) || (i > j && has.upper)) {
         box()
-        if (i == 1 && (!(j%%2L) || !has.upper || !has.lower))
+        if (i == 1 && (!(j %% 2L) || !has.upper || !has.lower))
           localAxis(1L + 2L * row1attop, x[, j], x[, i], ...)
-        if (i == nc && (j%%2L || !has.upper || !has.lower))
+        if (i == nc && (j %% 2L || !has.upper || !has.lower))
           localAxis(3L - 2L * row1attop, x[, j], x[, i],  ...)
-        if (j == 1 && (!(i%%2L) || !has.upper || !has.lower))
+        if (j == 1 && (!(i %% 2L) || !has.upper || !has.lower))
           localAxis(2L, x[, j], x[, i], ...)
-        if (j == nc && (i%%2L || !has.upper || !has.lower))
+        if (j == nc && (i %% 2L || !has.upper || !has.lower))
           localAxis(4L, x[, j], x[, i], ...)
         mfg <- par("mfg")
         if (i == j) {
