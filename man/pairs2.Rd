@@ -12,7 +12,7 @@ pairs2(x, labels, panel = points, ..., lower.panel = panel,
   upper.panel = panel, diag.panel = NULL, text.panel = textPanel,
   label.pos = 0.5 + has.diag/3, line.main = 3, cex.labels = NULL,
   font.labels = 1, row1attop = TRUE, gap = 1, log = "", xlim = NULL,
-  ylim = NULL)
+  ylim = NULL, axes_lower = FALSE)
 }
 \arguments{
 \item{x}{the coordinates of points given as numeric columns of a matrix or
@@ -60,6 +60,9 @@ to the row and column indexes of the subplots respectively
 and the third dimension is equal to 2 and correspond to the
 first and second values of the \code{xlim} and \code{ylim}
 arguments to use for each subplot.}
+
+\item{axes_lower}{logical. Should the axes be drawn only on the subplots of
+lower half matrix?}
 }
 \description{
 A matrix of scatterplots is produced
@@ -89,6 +92,7 @@ pairs(iris[1:4], xlim = my.xlim)
 
 }
 \author{
-\href{https://stackoverflow.com/users/2591234/shadow}{shadow} user
+Marc Choisy and
+        \href{https://stackoverflow.com/users/2591234/shadow}{shadow} user
         from \href{https://stackoverflow.com}{StackOverflow}.
 }

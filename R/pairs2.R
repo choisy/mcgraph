@@ -54,7 +54,11 @@
 #'                  first and second values of the \code{xlim} and \code{ylim}
 #'                  arguments to use for each subplot.
 #'
-#' @author \href{https://stackoverflow.com/users/2591234/shadow}{shadow} user
+#' @param axes_lower logical. Should the axes be drawn only on the subplots of
+#'                   lower half matrix?
+#
+#' @author Marc Choisy and
+#'         \href{https://stackoverflow.com/users/2591234/shadow}{shadow} user
 #'         from \href{https://stackoverflow.com}{StackOverflow}.
 #'
 #' @source href{https://stackoverflow.com/questions/22810309/pairs-specifying-axes-limits-of-the-subpanels}{Specifying axes limits of the subpanels}
@@ -82,7 +86,7 @@ pairs2 <- function(x, labels, panel = points, ..., lower.panel = panel,
                    upper.panel = panel, diag.panel = NULL, text.panel = textPanel,
                    label.pos = 0.5 + has.diag/3, line.main = 3, cex.labels = NULL,
                    font.labels = 1, row1attop = TRUE, gap = 1, log = "",
-                   xlim=NULL, ylim=NULL) {
+                   xlim=NULL, ylim=NULL, axes_lower = FALSE) {
 
   if (doText <- missing(text.panel) || is.function(text.panel))
     textPanel <- function(x = 0.5, y = 0.5, txt, cex, font)
@@ -164,14 +168,19 @@ pairs2 <- function(x, labels, panel = points, ..., lower.panel = panel,
 
       if (i == j || (i < j && has.lower) || (i > j && has.upper)) {
         box()
-        if (i == 1 && (!(j %% 2L) || !has.upper || !has.lower))
-          localAxis(1L + 2L * row1attop, x[, j], x[, i], ...)
-        if (i == nc && (j %% 2L || !has.upper || !has.lower))
-          localAxis(3L - 2L * row1attop, x[, j], x[, i],  ...)
-        if (j == 1 && (!(i %% 2L) || !has.upper || !has.lower))
-          localAxis(2L, x[, j], x[, i], ...)
-        if (j == nc && (i %% 2L || !has.upper || !has.lower))
-          localAxis(4L, x[, j], x[, i], ...)
+        if (axes_lower) {
+          if (i == nc & j != nc) localAxis(1, x[, j], x[, i], ...)
+          if (j == 1L & i != 1L) localAxis(2, x[, j], x[, i], ...)
+        } else {
+          if (i == 1 && (!(j %% 2L) || !has.upper || !has.lower))
+            localAxis(1L + 2L * row1attop, x[, j], x[, i], ...)
+          if (i == nc && (j %% 2L || !has.upper || !has.lower))
+            localAxis(3L - 2L * row1attop, x[, j], x[, i],  ...)
+          if (j == 1 && (!(i %% 2L) || !has.upper || !has.lower))
+            localAxis(2L, x[, j], x[, i], ...)
+          if (j == nc && (i %% 2L || !has.upper || !has.lower))
+            localAxis(4L, x[, j], x[, i], ...)
+        }
         mfg <- par("mfg")
         if (i == j) {
           if (has.diag) localDiagPanel(as.vector(x[, i]), ...)
