@@ -56,6 +56,8 @@ paircor <- function(df, digits = 2, cex = 1.5, pch = 21, bty_upper = par("bty"),
   .x <- .y <- mean(axeslim)
   n <- length(df)
   xlim <- ylim <- array(c(rep(axeslim[1], n*n), rep(axeslim[2], n*n)), c(n, n, 2))
+  opar <- par(pty = "s")
+  on.exit(par(opar))
   pairs2(df,
          upper.panel = function(x, y, ...) {
            points(x, y, type = "n", bty = "n", ...)
