@@ -84,12 +84,12 @@ pairs2(iris[1:4], xlim = c(0, 8), ylim = c(0, 8))
 # dim 3: lower und upper limit
 my_xlim <- array(0, dim = c(4, 4, 2))
 my_xlim[, , 2] <- 8
-my_ylim <- my.xlim
+my_ylim <- my_xlim
 my_xlim[1, , 1] <- 4
-pairs2(iris[1:4], xlim = my.xlim)
+pairs2(iris[1:4], xlim = my_xlim)
 # careful: the following would work, but does not adjust the labels!
 my_xlim[2, 3, 2] <- 6
-pairs(iris[1:4], xlim = my.xlim)
+pairs2(iris[1:4], xlim = my_xlim)
 
 }
 \author{
